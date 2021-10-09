@@ -16,6 +16,7 @@
     "Bot",
     "Node",
     "Animals",
+    "Quotes",
     "LOL"
   ],
   "author": "Alejandro Ramos @arhcoder",
@@ -25,8 +26,11 @@
   },
   "homepage": "https://github.com/arhcoder/Animalitos-Sabios#readme",
   "dependencies": {
+    "axios": "^0.22.0",
     "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
-    "node": "^16.9.1"
+    "esm": "^3.2.25",
+    "node": "^16.9.1",
+    "node-fetch": "^2.6.5"
   }
 }

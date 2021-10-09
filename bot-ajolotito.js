@@ -1,3 +1,5 @@
+let { getAPIjson } = require("./bot-API-get");
+
 // Regresa el mensaje de un ajolotito sabio //
 function ajolotitoWisdom()
 {
@@ -6,11 +8,13 @@ function ajolotitoWisdom()
     const ajolotitoPhoto = ajolotitoPhotoAPIjson.url;
 
     // Obtiene la frase //
-    const ajolotitoQuoueAPIjson = getAPIjson("https://api.quotable.io/random?tags=wisdom/");
+    const ajolotitoQuoueAPIjson = getAPIjson("https://api.quotable.io/random?tags=wisdom");
     const ajolotitoQuoe = ajolotitoQuoueAPIjson.content;
 
     // Junta el mensaje del ajolotito hacia Discord //
-    const ajolotitoMessage = "**/\"" + ajolotitoQuoe + "\"**\n— 💜\n" + ajolotitoPhoto;
+    const ajolotitoMessage = "**\"" + ajolotitoQuoe + "\"**\n— 💜\n" + ajolotitoPhoto;
 
     return ajolotitoMessage;
 }
+
+module.exports = { ajolotitoWisdom };

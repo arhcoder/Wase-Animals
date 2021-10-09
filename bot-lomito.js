@@ -1,3 +1,5 @@
+let { getAPIjson } = require("./bot-API-get");
+
 // Regresa el mensaje de un lomito sabio //
 function lomitoWisdom()
 {
@@ -6,11 +8,13 @@ function lomitoWisdom()
     const lomitoPhoto = lomitoPhotoAPIjson.message;
 
     // Obtiene la frase //
-    const lomitoQuoueAPIjson = getAPIjson("https://api.quotable.io/random?tags=inspirational/");
+    const lomitoQuoueAPIjson = getAPIjson("https://api.quotable.io/random?tags=inspirational");
     const lomitoQuoe = lomitoQuoueAPIjson.content;
 
     // Junta el mensaje del lomito hacia Discord //
-    const lomitoMessage = "**/\"" + lomitoQuoe + "\"**\n— 🐕\n" + lomitoPhoto;
+    const lomitoMessage = "**\"" + lomitoQuoe + "\"**\n— 🐕\n" + lomitoPhoto;
 
     return lomitoMessage;
 }
+
+module.exports = { lomitoWisdom };

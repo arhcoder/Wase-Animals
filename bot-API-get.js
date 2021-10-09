@@ -1,22 +1,14 @@
-// Consigue el JSON de una API //
+const fetch = require("node-fetch");
+const { json } = require("stream/consumers");
 
+// Consigue el JSON de una API //
 async function getAPIjson(APIurl)
 {
-    // Consigue la API //
-    const API = await fetch(APIurl);
-
-    // Valida haberla conseguido //
-    if (API.ok)
-    {
-        const json = API.json.json();
-        return json;
-    }
-    else
-    {
-        // Error 404 //
-        let error404 = "Error 404: API no encontrada...";
-        console.log(error404);
-
-        throw new Error(error404);
-    }
+    await fetch(APIurl)
+    .then(APIPromise => APIPromise.json())
+    .then(json => console.log("JSON conseguido:", json));
+    
+    return json;
 }
+
+module.exports = { getAPIjson };

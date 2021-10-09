@@ -1,18 +1,22 @@
 "use strict";
 
+let { michiWisdom } = require("./bot-michi");
+let { lomitoWisdom } = require("./bot-lomito");
+let { ajolotitoWisdom } = require("./bot-ajolotito");
+
 require("dotenv").config();
 const { Client, Intents } = require("discord.js");
 
 console.log("Here we go again 🕶");
 
 const client = new Client({
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
-
 const TOKEN = process.env.TOKEN;
 
-client.once("¡Cliente listo!", () => {
-	console.log("¡Bot Listo!\n🤖");
+// When the client is ready, run this code (only once)
+client.once("ready", () => {
+  console.log("Ready! 🤖");
 });
 
 // Escucha los canales del servidor de Discord y reacciona //
@@ -21,28 +25,30 @@ function createMessage(message)
 	var reply = "";
 	if (message.content === "sabio michi")
 	{
-		reply = michiWisdom();
+		console.log("\nMensaje detectado: ", message.content);
+		reply = "" + michiWisdom();
 		message.reply(reply);
-		console.log("Ay 1");
 	}
 	else if (message.content === "sabio lomito")
 	{
-		reply = lomitoWisdom();
+		console.log("\nMensaje detectado: ", message.content);
+		reply = "" + lomitoWisdom();
 		message.reply(reply);
-		console.log("Ay 2");
 	}
 	else if (message.content === "sabio ajolotito")
 	{
-		reply = ajolotitoWisdom();
+		console.log("\nMensaje detectado: ", message.content);
+		reply = "" + ajolotitoWisdom();
 		message.reply(reply);
-		console.log("Ay 3");
 	}
 	else
 	{
-		console.log("Ay 4");
+		console.log("\nNo se detectó nungún comando...");
 	}
-	console.log("Ajá? " + reply);
+	console.log("\nMensaje mandado en discord: \n" + reply + "\n");
 }
-client.on("messageCreate", createMessage);
 
+// Login to Discord with your client's token
 client.login(TOKEN);
+
+client.on("messageCreate", createMessage);
