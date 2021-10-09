@@ -1,0 +1,32 @@
+{
+  "name": "animalitos-sabios",
+  "version": "1.0.0",
+  "description": "Bot de Discord para obtener frases con imágenes bonitas de animalitos.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arhcoder/Animalitos-Sabios/"
+  },
+  "keywords": [
+    "Discord",
+    "Bot",
+    "Node",
+    "Animals",
+    "LOL"
+  ],
+  "author": "Alejandro Ramos @arhcoder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arhcoder/issues/"
+  },
+  "homepage": "https://github.com/arhcoder/Animalitos-Sabios#readme",
+  "dependencies": {
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "node": "^16.9.1"
+  }
+}
