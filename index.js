@@ -23,22 +23,10 @@ client.once("ready", () => {
 function createMessage(message)
 {
 	var reply = "";
-	if (message.content === "sabio michi")
+	if (message.content === "michi")
 	{
 		console.log("\nMensaje detectado: ", message.content);
 		reply = "" + michiWisdom();
-		message.reply(reply);
-	}
-	else if (message.content === "sabio lomito")
-	{
-		console.log("\nMensaje detectado: ", message.content);
-		reply = "" + lomitoWisdom();
-		message.reply(reply);
-	}
-	else if (message.content === "sabio ajolotito")
-	{
-		console.log("\nMensaje detectado: ", message.content);
-		reply = "" + ajolotitoWisdom();
 		message.reply(reply);
 	}
 	else
