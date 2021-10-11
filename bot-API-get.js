@@ -1,14 +1,19 @@
 const fetch = require("node-fetch");
-const { json } = require("stream/consumers");
 
 // Consigue el JSON de una API //
 async function getAPIjson(APIurl)
 {
-    await fetch(APIurl)
-    .then(APIPromise => APIPromise.json())
-    .then(json => console.log("JSON conseguido:", json));
-    
-    return json;
+    try
+    {
+        const response = await fetch(APIurl);
+        const json = await response.json();
+        console.log("JSON obtenido:\n", json);
+        return json;
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
 }
 
 module.exports = { getAPIjson };
