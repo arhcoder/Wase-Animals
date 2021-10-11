@@ -20,20 +20,32 @@ client.once("ready", () => {
 });
 
 // Escucha los canales del servidor de Discord y reacciona //
-function createMessage(message)
+async function createMessage(message)
 {
-	var reply = "";
-	if (message.content === "michi")
+	let reply = "";
+	if (message.content === "sabio michi")
 	{
-		console.log("\nMensaje detectado: ", message.content);
-		reply = "" + michiWisdom();
+		// console.log("\nMensaje detectado: ", message.content);
+		reply = "" + await michiWisdom();
+		message.reply(reply);
+	}
+	if (message.content === "sabio lomito")
+	{
+		// console.log("\nMensaje detectado: ", message.content);
+		reply = "" + await lomitoWisdom();
+		message.reply(reply);
+	}
+	if (message.content === "sabio ajolotito")
+	{
+		// console.log("\nMensaje detectado: ", message.content);
+		reply = "" + await ajolotitoWisdom();
 		message.reply(reply);
 	}
 	else
 	{
-		console.log("\nNo se detectó nungún comando...");
+		// console.log("\nNo se detectó nungún comando...");
 	}
-	console.log("\nMensaje mandado en discord: \n" + reply + "\n");
+	// console.log("\nMensaje mandado en discord: \n" + reply + "\n");
 }
 
 // Login to Discord with your client's token
