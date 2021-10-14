@@ -1,24 +1,22 @@
 let { getAPIjson } = require("./bot-API-get");
 
 // Regresa el mensaje de un michito sabio //
-async function michiWisdom()
+async function michiWisdomQuoe()
 {
-    // Obtiene la foto //
+    /// Regresa una frase famosa aleatoria; [String quoe].
+    let michiQuoeJSON = await getAPIjson("https://api.quotable.io/random?tags=famous-quotes");
+    let michiQuoe = "\"**" + michiQuoeJSON.content + "\"**";
+
+    return michiQuoe;
+}
+
+async function michiWisdomPhoto()
+{
+    /// Regresa la foto de un gatito aleatorio; [String  url].
     let michiPhotoJSON = await getAPIjson("https://api.thecatapi.com/v1/images/search");
     let michiPhoto = michiPhotoJSON[0].url;
 
-    // Obtiene la frase //
-    let michiQuoeJSON = await getAPIjson("https://api.quotable.io/random?tags=famous-quotes");
-    let michiQuoe = michiQuoeJSON.content;
-
-    // Junta el mensaje del michi hacia Discord //
-    let michiMessage = "**\"" + michiQuoe + "\"**\n— 🐈\n" + michiPhoto;
-
-    // Mensajes al log para depurar //
-    // console.log("\nlink del michi: ", michiPhoto, "\n");
-    // console.log("\nmensaje del michi: ", michiQuoe, "\n");
-    
-    return michiMessage;
+    return michiPhoto;
 }
 
-module.exports = { michiWisdom };
+module.exports = { michiWisdomQuoe, michiWisdomPhoto };

@@ -1,11 +1,12 @@
 "use strict";
 
-let { michiWisdom } = require("./bot-michi");
-let { lomitoWisdom } = require("./bot-lomito");
-let { ajolotitoWisdom } = require("./bot-ajolotito");
-
 require("dotenv").config();
 const { Client, Intents } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+
+let { michiWisdomQuoe, michiWisdomPhoto } = require("./bot-michi");
+let { lomitoWisdomQuoe, lomitoWisdomPhoto } = require("./bot-lomito");
+let { ajolotitoWisdomQuoe, ajolotitoWisdomPhoto } = require("./bot-ajolotito");
 
 console.log("Here we go again 🕶");
 
@@ -22,33 +23,82 @@ client.once("ready", () => {
 // Escucha los canales del servidor de Discord y reacciona //
 async function createMessage(message)
 {
-	let reply = "";
-	if (message.content === "sabio michi")
+	// Variables //
+	let quoe;
+	let photo;
+
+	// LISTA DE COMANDOS //
+	switch (message.content.toLowerCase())
 	{
-		// console.log("\nMensaje detectado: ", message.content);
-		reply = "" + await michiWisdom();
-		message.reply(reply);
+		// LLAMANDO AL GATITO //
+		case "sabio michi":
+			quoe = "" + await michiWisdomQuoe();
+			photo = "" + await michiWisdomPhoto();
+
+			const michiEmbed = new MessageEmbed()
+			.setTitle(quoe)
+			.setImage(photo)
+			.setColor("#44086A")
+			.setFooter("— 🐈");
+			message.reply({ embeds: [michiEmbed] });
+		break;
+
+		// LLAMANDO AL LOMITO //
+		case "sabio lomito":
+			quoe = "" + await lomitoWisdomQuoe();
+			photo = "" + await lomitoWisdomPhoto();
+
+			const lomitoEmbed = new MessageEmbed()
+			.setTitle(quoe)
+			.setImage(photo)
+			.setColor("#5C309E")
+			.setFooter("— 🐕");
+			message.reply({ embeds: [lomitoEmbed] });
+		break;
+
+		// LLAMANDO AL AJOLOTITO //
+		case "sabio ajolotito":
+			quoe = "" + await ajolotitoWisdomQuoe();
+			photo = "" + await ajolotitoWisdomPhoto();
+
+			const ajolotitoEmbed = new MessageEmbed()
+			.setTitle(quoe)
+			.setImage(photo)
+			.setColor("#B6086C")
+			.setFooter("— 💜");
+			message.reply({ embeds: [ajolotitoEmbed] });
+		break;
+
+		// LLAMANDO DE AYUDA //
+		case "help": case "ayuda":
+			const helpEmbed = new MessageEmbed()
+			.setTitle("**Comandos de Animalitos Sabios**")
+			.setColor("#300458")
+			.setThumbnail(client.user.displayAvatarURL())
+			.setDescription("Escribe un comando para recibir sabiduría \nde un animalito sabio.")
+
+			.addFields(
+				{ name: '\u200B', value: '\u200B' },
+				{ name: "🐱 :  sabio michi", value: "Escribe \"sabio michi\" \npara reflexión.", inline: true },
+				{ name: "🐶 :  sabio lomito", value: "Escribe \"sabio lomito\" \npara inspiración.", inline: true },
+				{ name: '\u200B', value: '\u200B' },
+				{ name: "💖 :  sabio ajolotito", value: "Escribe \"sabio ajolotito\" \npara sabiduría.", inline: true },
+				{ name: "❓ :  help / ayuda", value: "Escribe \"help\" o \"ayuda\" \npara ver lista de comandos.", inline: true },
+				{ name: '\u200B', value: '\u200B' },
+			)
+
+			.setFooter("Hecho por @arhcoder 💜", "https://github.com/arhcoder.png");
+			message.channel.send({ embeds: [helpEmbed] });
+		break;
+	
+		default:
+			// console.log("\nNo se detectó nungún comando...");
+		break;
 	}
-	if (message.content === "sabio lomito")
-	{
-		// console.log("\nMensaje detectado: ", message.content);
-		reply = "" + await lomitoWisdom();
-		message.reply(reply);
-	}
-	if (message.content === "sabio ajolotito")
-	{
-		// console.log("\nMensaje detectado: ", message.content);
-		reply = "" + await ajolotitoWisdom();
-		message.reply(reply);
-	}
-	else
-	{
-		// console.log("\nNo se detectó nungún comando...");
-	}
-	// console.log("\nMensaje mandado en discord: \n" + reply + "\n");
 }
 
 // Login to Discord with your client's token
 client.login(TOKEN);
 
+// Escucha activa de mensajes en el servidor de Discord.
 client.on("messageCreate", createMessage);

@@ -1,24 +1,22 @@
 let { getAPIjson } = require("./bot-API-get");
 
 // Regresa el mensaje de un ajolotito sabio //
-async function ajolotitoWisdom()
+async function ajolotitoWisdomQuoe()
 {
-    // Obtiene la foto //
+    /// Regresa una frase inspiracional aleatoria; [String quoe].
+    let ajolotitoQuoeJSON = await getAPIjson("https://api.quotable.io/random?tags=wisdom");
+    let ajolotitoQuoe = "\"**" + ajolotitoQuoeJSON.content + "\"**";
+    
+    return ajolotitoQuoe;
+}
+
+async function ajolotitoWisdomPhoto()
+{
+    /// Regresa la foto de un ajolotito aleatorio; [String  url].
     let ajolotitoPhotoJSON = await getAPIjson("https://axoltlapi.herokuapp.com/");
     let ajolotitoPhoto = ajolotitoPhotoJSON.url;
 
-    // Obtiene la frase //
-    let ajolotitoQuoeJSON = await getAPIjson("https://api.quotable.io/random?tags=wisdom");
-    let ajolotitoQuoe = ajolotitoQuoeJSON.content;
-
-    // Junta el mensaje del ajolotito hacia Discord //
-    let ajolotitoMessage = "**\"" + ajolotitoQuoe + "\"**\n— 💜\n" + ajolotitoPhoto;
-
-    // Mensajes al log para depurar //
-    // console.log("\nlink del ajolotito: ", ajolotitoPhoto, "\n");
-    // console.log("\nmensaje del ajolotito: ", ajolotitoQuoe, "\n");
-    
-    return ajolotitoMessage;
+    return ajolotitoPhoto;
 }
 
-module.exports = { ajolotitoWisdom };
+module.exports = { ajolotitoWisdomQuoe, ajolotitoWisdomPhoto };
