@@ -1,7 +1,7 @@
 {
-  "name": "animalitos-sabios",
+  "name": "wase-animals",
   "version": "1.0.0",
-  "description": "Bot de Discord para obtener frases con imágenes bonitas de animalitos.",
+  "description": "Discord bot to get random quotes with pretty animals photos.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arhcoder/Animalitos-Sabios/"
+    "url": "git+https://github.com/arhcoder/Wase-Animals/"
   },
   "keywords": [
     "Discord",
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/arhcoder/issues/"
   },
-  "homepage": "https://github.com/arhcoder/Animalitos-Sabios#readme",
+  "homepage": "https://github.com/arhcoder/Wase-Animals#readme",
   "dependencies": {
     "axios": "^0.22.0",
     "discord.js": "^13.2.0",

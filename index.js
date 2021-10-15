@@ -8,30 +8,32 @@ let { michiWisdomQuoe, michiWisdomPhoto } = require("./bot-michi");
 let { lomitoWisdomQuoe, lomitoWisdomPhoto } = require("./bot-lomito");
 let { ajolotitoWisdomQuoe, ajolotitoWisdomPhoto } = require("./bot-ajolotito");
 
-console.log("Here we go again 🕶");
+console.log("Launching Wase Animals...");
 
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
 const TOKEN = process.env.TOKEN;
 
-// When the client is ready, run this code (only once)
-client.once("ready", () => {
-  console.log("Ready! 🤖");
+// When the client is ready, run this code (only once).
+client.once("ready", () =>
+{
+	console.log("Wase Animals ready!");
+	console.log("🐈");
 });
 
-// Escucha los canales del servidor de Discord y reacciona //
+// Detects Discord messages and react.
 async function createMessage(message)
 {
-	// Variables //
+	// VARIABLES //
 	let quoe;
 	let photo;
 
-	// LISTA DE COMANDOS //
+	// COMMAND LIST //
 	switch (message.content.toLowerCase())
 	{
-		// LLAMANDO AL GATITO //
-		case "sabio michi":
+		// CALLING THE KITTY //
+		case "wase kitty":
 			quoe = "" + await michiWisdomQuoe();
 			photo = "" + await michiWisdomPhoto();
 
@@ -43,8 +45,8 @@ async function createMessage(message)
 			message.reply({ embeds: [michiEmbed] });
 		break;
 
-		// LLAMANDO AL LOMITO //
-		case "sabio lomito":
+		// CALLING THE DOGGY //
+		case "wase doggy":
 			quoe = "" + await lomitoWisdomQuoe();
 			photo = "" + await lomitoWisdomPhoto();
 
@@ -56,8 +58,8 @@ async function createMessage(message)
 			message.reply({ embeds: [lomitoEmbed] });
 		break;
 
-		// LLAMANDO AL AJOLOTITO //
-		case "sabio ajolotito":
+		// CALLING THE AXOLOTL //
+		case "wase axolotl":
 			quoe = "" + await ajolotitoWisdomQuoe();
 			photo = "" + await ajolotitoWisdomPhoto();
 
@@ -69,36 +71,36 @@ async function createMessage(message)
 			message.reply({ embeds: [ajolotitoEmbed] });
 		break;
 
-		// LLAMANDO DE AYUDA //
-		case "help": case "ayuda":
+		// CALLING HELP //
+		case "wase animals": case "help":
 			const helpEmbed = new MessageEmbed()
-			.setTitle("**Comandos de Animalitos Sabios**")
+			.setTitle("**Wase Animals Commands**")
 			.setColor("#300458")
 			.setThumbnail(client.user.displayAvatarURL())
-			.setDescription("Escribe un comando para recibir sabiduría \nde un animalito sabio.")
+			.setDescription("Type a command to get wisdom \nof a wase animal.")
 
 			.addFields(
-				{ name: '\u200B', value: '\u200B' },
-				{ name: "🐱 :  sabio michi", value: "Escribe \"sabio michi\" \npara reflexión.", inline: true },
-				{ name: "🐶 :  sabio lomito", value: "Escribe \"sabio lomito\" \npara inspiración.", inline: true },
-				{ name: '\u200B', value: '\u200B' },
-				{ name: "💖 :  sabio ajolotito", value: "Escribe \"sabio ajolotito\" \npara sabiduría.", inline: true },
-				{ name: "❓ :  help / ayuda", value: "Escribe \"help\" o \"ayuda\" \npara ver lista de comandos.", inline: true },
-				{ name: '\u200B', value: '\u200B' },
+				{ name: "\u200B", value: "\u200B" },
+				{ name: "🐱 :  wase kitty", value: "Type \"wase kitty\" \nto reflection.", inline: true },
+				{ name: "🐶 :  wase doggy", value: "Type \"wase doggy\" \nto inspiration.", inline: true },
+				{ name: "\u200B", value: "\u200B" },
+				{ name: "💖 :  wase axolotl", value: "Type \"wase axolotl\" \nto wisdom", inline: true },
+				{ name: "❓ :  help", value: "Type \"wase animals\" to see \ncommands list.", inline: true },
+				{ name: "\u200B", value: "\u200B" },
 			)
 
-			.setFooter("Hecho por @arhcoder 💜", "https://github.com/arhcoder.png");
+			.setFooter("Made by @arhcoder 💜", "https://github.com/arhcoder.png");
 			message.channel.send({ embeds: [helpEmbed] });
 		break;
 	
 		default:
-			// console.log("\nNo se detectó nungún comando...");
+			// console.log("\nNo command detected...");
 		break;
 	}
 }
 
-// Login to Discord with your client's token
+// Login to Discord with your client's token.
 client.login(TOKEN);
 
-// Escucha activa de mensajes en el servidor de Discord.
+// Actively listen for messages on the Discord server...
 client.on("messageCreate", createMessage);

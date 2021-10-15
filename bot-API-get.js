@@ -7,7 +7,7 @@ async function getAPIjson(APIurl)
     {
         const response = await fetch(APIurl);
         const json = await response.json();
-        // console.log("JSON obtenido:\n", json);
+        // console.log("Obtained JSON:\n", json);
         
         return json;
     }
