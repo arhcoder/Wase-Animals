@@ -72,7 +72,7 @@ async function createMessage(message)
 		break;
 
 		// CALLING HELP //
-		case "wase animals": case "help":
+		case "wase animals":
 			const helpEmbed = new MessageEmbed()
 			.setTitle("**Wase Animals Commands**")
 			.setColor("#300458")
@@ -85,7 +85,7 @@ async function createMessage(message)
 				{ name: "🐶 :  wase doggy", value: "Type \"wase doggy\" \nto inspiration.", inline: true },
 				{ name: "\u200B", value: "\u200B" },
 				{ name: "💖 :  wase axolotl", value: "Type \"wase axolotl\" \nto wisdom", inline: true },
-				{ name: "❓ :  help", value: "Type \"wase animals\" to see \ncommands list.", inline: true },
+				{ name: "❓ :  wase animals", value: "Type \"wase animals\" to see \ncommands list.", inline: true },
 				{ name: "\u200B", value: "\u200B" },
 			)
 
