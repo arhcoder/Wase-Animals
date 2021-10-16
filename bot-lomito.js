@@ -21,6 +21,7 @@ async function lomitoWisdomPhoto()
         lomitoPhotoJSON = await getAPIjson("https://random.dog/woof.json");
         lomitoPhoto = lomitoPhotoJSON.url;
     }
+    // Valida que la API no regrese un .mp4 //
     while (lomitoPhoto.endsWith(".mp4"));
 
     return lomitoPhoto;
