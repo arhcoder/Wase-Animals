@@ -20,6 +20,8 @@ client.once("ready", () =>
 {
 	console.log("Wase Animals ready!");
 	console.log("🐈");
+
+	client.user.setActivity("🍀 Meditating...");
 });
 
 // Detects Discord messages and react.
